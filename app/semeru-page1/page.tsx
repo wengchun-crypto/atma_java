@@ -1,0 +1,57 @@
+import React from "react";
+import Link from "next/link";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { MOUNTAINS } from "@/lib/data";
+
+export default function SemeruPage1() {
+  const data = MOUNTAINS.find((m) => m.slug === "gunung-semeru")!;
+
+  return (
+    <>
+      <link rel="stylesheet" href="/css/semeru-page.css" />
+
+      <Navbar />
+
+      <div className="main-card">
+        <div
+          className="image-header"
+          style={{ backgroundImage: `url('/assets/img_gunung/${data.gambar}.jpg')` }}
+        >
+          <div className="coordinate-box">
+            <p>
+              <i className="fa-solid fa-location-dot"></i> {data.titik_koordinat}
+            </p>
+          </div>
+        </div>
+
+        <div className="content-container">
+          <h1 className="mountain-title">{data.nama}</h1>
+
+          <div
+            className="article-body"
+            dangerouslySetInnerHTML={{ __html: data.deskripsi_page1 }}
+          />
+
+          <div className="pagination-wrapper">
+            <div className="pagination">
+              <Link href="/" title="Kembali ke Jelajah">
+                <i className="fa-solid fa-compass"></i>
+              </Link>
+
+              <Link className="active" href="/semeru-page1">
+                1
+              </Link>
+
+              <Link href="/semeru-page2">
+                2
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <Footer />
+    </>
+  );
+}
